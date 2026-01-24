@@ -2,14 +2,14 @@ using System;
 
 public class Entry
 {
-    public string _date;
-    public string _promptText;
-    public string _entryText;
+    public string Date { get; set; }
+    public string PromptText { get; set; }
+    public string EntryText { get; set; }
 
     public void Display()
     {
-        Console.WriteLine($"{_date} - {_promptText}");
-        Console.WriteLine(_entryText);
+        Console.WriteLine($"{Date} - {PromptText}");
+        Console.WriteLine(EntryText);
         Console.WriteLine();
     }
 }

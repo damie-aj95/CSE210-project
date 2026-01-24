@@ -12,9 +12,10 @@ public class PromptGenerator
         "What is something I want to improve tomorrow?"
     };
 
+    private Random _rand = new Random();
+
     public string GetRandomPrompt()
     {
-        Random rand = new Random();
-        return _prompts[rand.Next(_prompts.Count)];
+        return _prompts[_rand.Next(_prompts.Count)];
     }
 }

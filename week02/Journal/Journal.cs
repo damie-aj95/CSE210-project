@@ -4,7 +4,7 @@ using System.IO;
 
 public class Journal
 {
-    public List<Entry> _entries = new List<Entry>();
+    private List<Entry> _entries = new List<Entry>();
 
     public void AddEntry(Entry entry)
     {
@@ -25,7 +25,7 @@ public class Journal
         {
             foreach (Entry entry in _entries)
             {
-                outputFile.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}");
+                outputFile.WriteLine($"{entry.Date}~|~{entry.PromptText}~|~{entry.EntryText}");
             }
         }
     }
@@ -37,12 +37,17 @@ public class Journal
         string[] lines = File.ReadAllLines(fileName);
         foreach (string line in lines)
         {
-            string[] parts = line.Split("|");
+            if (string.IsNullOrWhiteSpace(line)) continue;
 
-            Entry entry = new Entry();
-            entry._date = parts[0];
-            entry._promptText = parts[1];
-            entry._entryText = parts[2];
+            string[] parts = line.Split("~|~");
+            if (parts.Length != 3) continue;
+
+            Entry entry = new Entry
+            {
+                Date = parts[0],
+                PromptText = parts[1],
+                EntryText = parts[2]
+            };
 
             _entries.Add(entry);
         }
