@@ -5,16 +5,16 @@ public class Activity
 {
     protected string _name;
     protected string _description;
-    protected int _timer;
+    protected int _duration;
 
     public void DisplayStartingMessage()
     {
         Console.Clear();
-        Console.WriteLine($"Welcome to {_name}");
+        Console.WriteLine($"Welcome to the {_name} Activity");
         Console.WriteLine(_description);
 
-        Console.Write("Enter duration in seconds: ");
-        _timer = int.Parse(Console.ReadLine());
+        Console.Write("Enter duration (seconds): ");
+        _duration = int.Parse(Console.ReadLine());
 
         Console.WriteLine("Prepare to begin...");
         ShowSpinner(3);
@@ -22,28 +22,28 @@ public class Activity
 
     public void DisplayEndingMessage()
     {
-        Console.WriteLine("Good job!");
+        Console.WriteLine("Well done!");
         ShowSpinner(2);
-        Console.WriteLine($"You completed {_name} for {_timer} seconds.");
+        Console.WriteLine($"You completed {_name} for {_duration} seconds.");
         ShowSpinner(3);
     }
 
-    protected void ShowSpinner(int seconds)
+    public void ShowSpinner(int seconds)
     {
-        string[] seq = { "|", "/", "-", "\\" };
-        DateTime end = DateTime.Now.AddSeconds(seconds);
+        string[] sequence = { "|", "/", "-", "\\" };
+        DateTime endTime = DateTime.Now.AddSeconds(seconds);
         int i = 0;
 
-        while (DateTime.Now < end)
+        while (DateTime.Now < endTime)
         {
-            Console.Write(seq[i]);
+            Console.Write(sequence[i]);
             Thread.Sleep(200);
             Console.Write("\b \b");
-            i = (i + 1) % seq.Length;
+            i = (i + 1) % sequence.Length;
         }
     }
 
-    protected void ShowCountDown(int seconds)
+    public void ShowCountDown(int seconds)
     {
         for (int i = seconds; i > 0; i--)
         {

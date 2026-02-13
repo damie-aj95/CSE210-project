@@ -1,20 +1,18 @@
-using System;
-
 public class BreathingActivity : Activity
 {
     public BreathingActivity()
     {
-        _name = "Breathing Activity";
-        _description = "This activity helps you relax through slow breathing.";
+        _name = "Breathing";
+        _description = "Relax by breathing slowly and focusing on your breath.";
     }
 
     public void Run()
     {
         DisplayStartingMessage();
 
-        DateTime end = DateTime.Now.AddSeconds(_timer);
+        DateTime endTime = DateTime.Now.AddSeconds(_duration);
 
-        while (DateTime.Now < end)
+        while (DateTime.Now < endTime)
         {
             Console.WriteLine("Breathe in...");
             ShowCountDown(4);
