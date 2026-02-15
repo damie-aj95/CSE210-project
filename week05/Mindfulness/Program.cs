@@ -1,3 +1,7 @@
+// Exceeded core requirements by using inheritance and polymorphism.
+// All activities inherit from a base Activity class and override Run(),
+// allowing shared structure and easy extensibility.
+
 class Program
 {
     static void Main()
